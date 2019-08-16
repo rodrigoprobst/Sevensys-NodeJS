@@ -1,3 +1,11 @@
+# exclude folders
 node_modules
+src
+
+#exclude files
 npm-debug.log
-.env
+/.env
+/*.sh
+/tsconfig.json
+/yarn.lock
+/Dockerfile
