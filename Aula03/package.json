@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "nodemon",
     "start": "node dist/services/products/index.js",
-    "build": "tsc"
+    "build": "rm -rf ./dist && tsc"
   },
   "nodemonConfig": {
     "ignore": [
@@ -27,7 +27,7 @@
     "watch": [
       "src"
     ],
-    "exec": "tsc && yarn start",
+    "exec": "yarn build && yarn start",
     "ext": "ts"
   },
   "dependencies": {
