@@ -55,7 +55,7 @@
       "created": 1556627494558,
       "description": "",
       "modified": 1556627494558,
-      "name": "Mauricio",
+      "name": "NodeJS-Sevensys",
       "parentId": null,
       "_type": "workspace"
     },
@@ -652,7 +652,7 @@
       "authentication": {},
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"Mauricio\",\n\t\"login\": \"mauricio\",\n\t\"password\": \"123123\"\n\t\n}"
+        "text": "{\n\t\"name\": \"Rodrigo\",\n\t\"login\": \"rodrigo\",\n\t\"password\": \"123123\"\n\t\n}"
       },
       "created": 1565055201552,
       "description": "",
