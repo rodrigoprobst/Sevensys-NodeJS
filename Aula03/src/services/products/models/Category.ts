@@ -1,12 +1,17 @@
+import {
+  Model,
+  Column,
+  Table,
+  Scopes,
+  CreatedAt,
+  UpdatedAt,
+  AllowNull,
+  Length
+} from "sequelize-typescript";
 
-import {Model, Column, Table, Scopes, CreatedAt, UpdatedAt, AllowNull, Length} from 'sequelize-typescript';
-
-@Scopes(() => ({
-
-}))
+@Scopes(() => ({}))
 @Table
 export class Category extends Model<Category> {
-
   @AllowNull(false)
   @Length({ max: 100, min: 2 })
   @Column
@@ -19,5 +24,4 @@ export class Category extends Model<Category> {
   @UpdatedAt
   @Column
   updatedAt!: Date;
-
 }

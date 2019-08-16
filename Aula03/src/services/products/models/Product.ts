@@ -1,14 +1,22 @@
+import {
+  Model,
+  Column,
+  Table,
+  Scopes,
+  CreatedAt,
+  UpdatedAt,
+  AllowNull,
+  Length,
+  ForeignKey,
+  BelongsTo,
+  DataType
+} from "sequelize-typescript";
+import { Category } from "./Category";
+import { DecimalDataType } from "sequelize/types";
 
-import {Model, Column, Table, Scopes, CreatedAt, UpdatedAt, AllowNull, Length, ForeignKey, BelongsTo, DataType} from 'sequelize-typescript';
-import { Category } from './Category';
-import { DecimalDataType } from 'sequelize/types';
-
-@Scopes(() => ({
-
-}))
+@Scopes(() => ({}))
 @Table
 export class Product extends Model<Product> {
-
   @AllowNull(false)
   @Length({ max: 100, min: 2 })
   @Column
@@ -38,5 +46,4 @@ export class Product extends Model<Product> {
   @UpdatedAt
   @Column
   updatedAt!: Date;
-
 }
