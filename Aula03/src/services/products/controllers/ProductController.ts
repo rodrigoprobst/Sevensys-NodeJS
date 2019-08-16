@@ -4,18 +4,12 @@ import { Category } from "../models/Category";
 
 export class ProductController {
   public async index(req: Request, res: Response) {
-    await Product.findAndCountAll()
-      .then(list => {
-        return res.status(200).json({
-          response: "OK",
-          list
-        });
-      })
-      .catch(() => {
-        return res
-          .status(400)
-          .json({ response: "error", message: "Product not found!" });
+    await Product.findAndCountAll().then(list => {
+      return res.status(200).json({
+        response: "OK",
+        list
       });
+    });
   }
 
   public async show(req: Request, res: Response) {
