@@ -1,8 +1,17 @@
 {
-  "name": "aula02",
+  "name": "nodejs-sevensys",
   "version": "1.0.0",
   "main": "dist/services/test/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rodrigoprobst/Sevensys-NodeJS"
+  },
+  "author": {
+    "name": "Rodrigo Becker Probst",
+    "email": "becker.rodrigo@outlook.com",
+    "web": "https://www.instagram.com/probst.rodrigo/"
+  },
   "scripts": {
     "dev": "nodemon",
     "start": "node dist/services/products/index.js",
