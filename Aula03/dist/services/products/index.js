@@ -9,7 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_class_1 = require("../../server.class");
+const dotenv = require("dotenv");
 const mysql_1 = require("./config/mysql");
+dotenv.config();
 const app_1 = require("./app");
 const PORT = process.env.PRODUCTS_PORT || 3002;
 (() => __awaiter(this, void 0, void 0, function* () {
