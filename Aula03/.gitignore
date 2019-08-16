@@ -9,6 +9,9 @@ yarn.lock
 # environmental files
 .env
 
+# dist folder
+/dist
+
 # Runtime data
 pids
 *.pid
