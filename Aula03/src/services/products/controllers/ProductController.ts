@@ -39,7 +39,7 @@ export class ProductController {
   public async save(req: Request, res: Response) {
     await Product.create(req.body)
       .then(product => {
-        return res.status(200).json({ response: "OK", product });
+        return res.status(201).json({ response: "OK", product });
       })
       .catch(erro => {
         return res.status(400).json({ response: "error", erro });

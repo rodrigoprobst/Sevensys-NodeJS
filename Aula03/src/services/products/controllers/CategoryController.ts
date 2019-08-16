@@ -36,7 +36,7 @@ export class CategoryController {
   public async save(req: Request, res: Response) {
     await Category.create(req.body)
       .then(category => {
-        return res.status(200).json({ response: "OK", category });
+        return res.status(201).json({ response: "OK", category });
       })
       .catch(erro => {
         return res.status(400).json({ response: "error", erro });
