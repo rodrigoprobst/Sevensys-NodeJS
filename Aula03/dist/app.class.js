@@ -3,11 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const RateLimit = require("express-rate-limit");
 const bodyParser = require("body-parser");
-const compress = require('compression');
-const cors = require('cors');
-const helmet = require('helmet');
+const compress = require("compression");
+const cors = require("cors");
+const helmet = require("helmet");
 class AppClass {
     constructor(routes) {
+        this.routes = routes;
         this.routes = routes;
         this.app = express();
     }
@@ -27,15 +28,16 @@ class AppClass {
         this.app.use(compress());
         // secure apps by setting various HTTP headers
         this.app.use(helmet());
-        this.app.route(`${this.routes.path}/teste`)
+        this.app
+            .route(`${this.routes.path}/teste`)
             .get((req, res, next) => {
             res.json({ message: "Chegou" });
         });
         // enable CORS - Cross Origin Resource Sharing
         this.app.use(cors());
         // Apidoc
-        this.app.use(`${this.routes.path}/apidoc`, express.static('dist/apidoc'));
-        this.app.use(`${this.routes.path}/`, express.static('public'));
+        this.app.use(`${this.routes.path}/apidoc`, express.static("dist/apidoc"));
+        this.app.use(`${this.routes.path}/`, express.static("public"));
         // Load Routes
         this.routes.routes(this.app);
         // Add error formating

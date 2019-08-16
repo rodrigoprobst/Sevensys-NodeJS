@@ -30,8 +30,7 @@ class ProductController {
                     return res.status(404).json({ message: "Produto não encontrado!" });
                 }
                 const category = yield product.getCategory();
-                product.category = category;
-                return res.status(200).json(product);
+                return res.status(200).json({ product, category });
             }
             catch (e) {
                 return res.status(400).json({ message: e.message });

@@ -4,7 +4,22 @@
   "main": "dist/services/test/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && nodemon dist/services/products/index.js"
+    "dev": "nodemon",
+    "start": "node dist/services/products/index.js",
+    "build": "tsc"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "tsc && yarn start",
+    "ext": "ts"
   },
   "dependencies": {
     "@types/node": "^12.7.1",
