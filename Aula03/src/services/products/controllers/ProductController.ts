@@ -1,82 +1,87 @@
 import { Request, Response } from "express";
 import { Product } from "../models/Product";
 import { Category } from "../models/Category";
+import { log } from "util";
 
 export class ProductController {
   public async index(req: Request, res: Response) {
-    await Product.findAndCountAll().then(list => {
+    try {
+      const list = await Product.findAndCountAll();
       return res.status(200).json({
         response: "OK",
         list
       });
-    });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 
   public async show(req: Request, res: Response) {
-    const { id } = req.params;
-    await Product.findByPk(id, {
-      include: [{ model: Category }]
-    })
-      .then(async product => {
-        return res.status(200).json({
-          response: "OK",
-          product
-        });
-      })
-      .catch(() => {
+    try {
+      const { id } = req.params;
+      const product = await Product.findByPk(id, {
+        include: [{ model: Category }]
+      });
+
+      if (!product) {
         return res
           .status(400)
           .json({ response: "error", message: "Product not found!" });
+      }
+
+      return res.status(200).json({
+        response: "OK",
+        product
       });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 
   public async save(req: Request, res: Response) {
-    await Product.create(req.body)
-      .then(product => {
-        return res.status(201).json({ response: "OK", product });
-      })
-      .catch(erro => {
-        return res.status(400).json({ response: "error", erro });
-      });
+    try {
+      const product = await Product.create(req.body);
+      return res.status(201).json({ response: "OK", product });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 
   public async edit(req: Request, res: Response) {
-    const { id } = req.params;
-    await Product.findByPk(id)
-      .then(async product => {
-        await product
-          .update(req.body)
-          .then(product => {
-            return res.status(200).json({ response: "OK", product });
-          })
-          .catch(error => {
-            return res.status(400).json({ response: "error", error });
-          });
-      })
-      .catch(() => {
+    try {
+      const { id } = req.params;
+      const product = await Product.findByPk(id);
+
+      if (!product) {
         return res
           .status(404)
           .json({ response: "error", message: "Product not found!" });
-      });
+      }
+
+      const updated = await product.update(req.body);
+
+      return res.status(200).json({ response: "OK", updated });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 
   public async delete(req: Request, res: Response) {
-    const { id } = req.params;
-    await Product.findByPk(id)
-      .then(async product => {
-        await product
-          .destroy()
-          .then(product => {
-            return res.status(200).json({ response: "OK", product });
-          })
-          .catch(error => {
-            return res.status(400).json({ response: "error", error });
-          });
-      })
-      .catch(() => {
+    try {
+      const { id } = req.params;
+      const product = await Product.findByPk(id);
+
+      if (!product) {
         return res
           .status(404)
           .json({ response: "error", message: "Product not found!" });
-      });
+      }
+
+      const destroyed = await product.destroy();
+
+      return res.status(200).json({ response: "OK", destroyed });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 }

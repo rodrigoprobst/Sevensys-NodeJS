@@ -1,77 +1,86 @@
 import { Request, Response } from "express";
 import { Category } from "../models/Category";
+import { log } from "util";
 
 export class CategoryController {
   public async index(req: Request, res: Response) {
-    await Category.findAndCountAll().then(list => {
+    try {
+      const list = await Category.findAndCountAll();
       return res.status(200).json({
         response: "OK",
         list
       });
-    });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 
   public async show(req: Request, res: Response) {
-    const { id } = req.params;
-    await Category.findByPk(id)
-      .then(async category => {
-        return res.status(200).json({
-          response: "OK",
-          category
-        });
-      })
-      .catch(() => {
+    try {
+      const { id } = req.params;
+      const category = await Category.findByPk(id, {
+        include: [{ model: Category }]
+      });
+
+      if (!category) {
         return res
           .status(400)
           .json({ response: "error", message: "Category not found!" });
+      }
+
+      return res.status(200).json({
+        response: "OK",
+        category
       });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 
   public async save(req: Request, res: Response) {
-    await Category.create(req.body)
-      .then(category => {
-        return res.status(201).json({ response: "OK", category });
-      })
-      .catch(erro => {
-        return res.status(400).json({ response: "error", erro });
-      });
+    try {
+      const category = await Category.create(req.body);
+      return res.status(201).json({ response: "OK", category });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 
   public async edit(req: Request, res: Response) {
-    const { id } = req.params;
-    await Category.findByPk(id)
-      .then(async Category => {
-        await Category.update(req.body)
-          .then(category => {
-            return res.status(200).json({ response: "OK", category });
-          })
-          .catch(error => {
-            return res.status(400).json({ response: "error", error });
-          });
-      })
-      .catch(() => {
+    try {
+      const { id } = req.params;
+      const category = await Category.findByPk(id);
+
+      if (!category) {
         return res
           .status(404)
           .json({ response: "error", message: "Category not found!" });
-      });
+      }
+
+      const updated = await category.update(req.body);
+
+      return res.status(200).json({ response: "OK", updated });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 
   public async delete(req: Request, res: Response) {
-    const { id } = req.params;
-    await Category.findByPk(id)
-      .then(async Category => {
-        await Category.destroy()
-          .then(category => {
-            return res.status(200).json({ response: "OK", category });
-          })
-          .catch(error => {
-            return res.status(400).json({ response: "error", error });
-          });
-      })
-      .catch(() => {
+    try {
+      const { id } = req.params;
+      const category = await Category.findByPk(id);
+
+      if (!category) {
         return res
           .status(404)
           .json({ response: "error", message: "Category not found!" });
-      });
+      }
+
+      const destroyed = await category.destroy();
+
+      return res.status(200).json({ response: "OK", destroyed });
+    } catch (error) {
+      return res.status(400).json({ response: "error", error });
+    }
   }
 }
