@@ -9,3 +9,7 @@ npm-debug.log
 /tsconfig.json
 /yarn.lock
 /Dockerfile
+
+#excepsions
+
+!clearServer.sh

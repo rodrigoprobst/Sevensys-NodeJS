@@ -2,8 +2,6 @@ import Server from "../../server.class";
 import * as dotenv from "dotenv";
 import { sequelize } from "./config/mysql";
 
-dotenv.config();
-
 import app from "./app";
 
 const PORT: Number | any = process.env.PRODUCTS_PORT || 3002;

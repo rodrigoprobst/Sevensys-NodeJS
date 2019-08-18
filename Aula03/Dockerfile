@@ -6,10 +6,30 @@ WORKDIR /var/www/
 COPY package.json .
 
 # Installing yarn
-RUN yarn install && yarn cache clean
+RUN yarn && yarn cache clean
 
 # Bundle app source
 COPY /dist ./dist
+
+# variaveis de ambiente
+
+# NODE ENVIRONMENT
+ENV NODE_ENV development
+
+# APPLICATION PORTS
+ENV NODE_PORT 3000
+ENV TEST_PORT 3001
+ENV PRODUCTS_PORT 3002
+
+# DB CONFIGURATIONS
+ENV DB_HOSTNAME "mysql-nodejs.mauricioschmitz.com.br"
+ENV DB_USERNAME "nodejs"
+ENV DB_PORT 3307
+ENV DB_PASSWORD "sevensys"
+ENV DB_NAME "rodrigo"
+
+# OTHERS
+ENV USE_SSL false
 
 CMD [ "yarn", "start" ]
 
