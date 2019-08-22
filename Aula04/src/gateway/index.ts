@@ -6,8 +6,8 @@ import * as basicAuth from "express-basic-auth";
 import { Request, Response, NextFunction } from "express";
 
 import * as os from "os";
-
 const hostname = os.hostname();
+console.log(hostname);
 
 const app = express();
 dotenv.config();
@@ -16,13 +16,13 @@ const basicAuthMiddleware = require("../middlewares/basicAuth");
 const auth = require("../middlewares/auth");
 
 const testServiceProxy = httpProxy(
-  `http://${hostname}:${process.env.TEST_PORT || 3001}`
+  `http://test:${process.env.TEST_PORT || 3001}`
 );
 const productServiceProxy = httpProxy(
-  `http://${hostname}:${process.env.PRODUCT_PORT || 3002}`
+  `http://product:${process.env.PRODUCT_PORT || 3002}`
 );
 const userServiceProxy = httpProxy(
-  `http://${hostname}:${process.env.USER_PORT || 3003}`
+  `http://user:${process.env.USER_PORT || 3003}`
 );
 
 app.all(

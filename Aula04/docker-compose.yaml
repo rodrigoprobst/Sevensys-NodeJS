@@ -49,3 +49,6 @@ volumes:
   log-product: {}
   log-user: {}
   log-gateway: {}
+
+networks:
+  default:
