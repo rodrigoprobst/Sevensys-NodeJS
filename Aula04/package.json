@@ -18,7 +18,7 @@
     "start-test": "node dist/services/test/index.js",
     "start-product": "node dist/services/product/index.js",
     "start-user": "node dist/services/user/index.js",
-    "build": "rm -rf ./dist && tsc",
+    "build": "cp .env.dist .env && rm -rf ./dist && tsc",
     "build-linux": "rm -rf ./dist && tsc"
   },
   "nodemonConfig": {
