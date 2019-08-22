@@ -27,7 +27,6 @@ export class User extends Model<User> {
   login!: string;
 
   @AllowNull(false)
-  @Length({ max: 50, min: 2 })
   @Column
   password!: string;
 

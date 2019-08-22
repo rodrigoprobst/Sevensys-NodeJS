@@ -35,9 +35,9 @@ ENV SECRET "rodrigob"
 # OTHERS
 ENV USE_SSL false
 
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "start-user" ]
 
-EXPOSE 3000
+EXPOSE 3003
 
 
 

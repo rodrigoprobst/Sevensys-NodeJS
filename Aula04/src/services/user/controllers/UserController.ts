@@ -1,45 +1,40 @@
 import { Request, Response } from "express";
 import { User } from "../models/User";
 import * as jwt from "jsonwebtoken";
-//import * as bcrypt from 'bcrypt';
+import * as bcrypt from "bcrypt";
 
 export class UserController {
-
   public async login(req: Request, res: Response) {
     try {
       const { login, password } = req.body;
       const user = await User.findOne({
         where: {
-          login        
+          login
         }
-      });      
+      });
 
-      // yarn add bcrypt
-      
       if (!user) {
         return res
           .status(404)
           .json({ response: "error", message: "User not found!" });
       }
 
-      // const result = await bcrypt.compare(password, user.password);
+      const result = await bcrypt.compare(password, user.password);
 
-      /**
-       *  if(!result) {
-              return res.status(403).json({message: 'User and Password not match!'})
-          }
+      if (!result) {
+        return res
+          .status(403)
+          .json({ message: "User and Password not match!" });
+      }
 
-      */
-
-      var token = jwt.sign({id: user.id}, process.env.SECRET || 'anything', {
+      var token = jwt.sign({ id: user.id }, process.env.SECRET || "anything", {
         expiresIn: 300 // 5 minutos
-      });     
+      });
 
-      return res.status(200).json({ 
-        auth: true, 
+      return res.status(200).json({
+        auth: true,
         token
       });
-      
     } catch (error) {
       return res.status(400).json({ response: "error", error });
     }
@@ -78,10 +73,9 @@ export class UserController {
   }
 
   public async save(req: Request, res: Response) {
-    try {      
+    try {
+      req.body.password = await bcrypt.hash(req.body.password, 6);
       const user = await User.create(req.body);
-      
-      // req.body.password = await bcrypt.hash(req.body.password, 6);
 
       return res.status(201).json({ response: "OK", user });
     } catch (error) {

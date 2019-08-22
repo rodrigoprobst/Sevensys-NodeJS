@@ -1,11 +1,9 @@
 function defaultAuth(username, password, cb) {
-    if(username === 'nodejs' && password === 'sevensys') {
-        return cb(null, true);
-    }
+  if (username === "nodejs" && password === "sevensys") {
+    return cb(null, true);
+  }
 
-    return cb(null, false);
+  return cb(null, false);
 }
 
-export {
-    defaultAuth,
-}
+export { defaultAuth };

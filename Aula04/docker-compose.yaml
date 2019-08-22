@@ -1,0 +1,51 @@
+version: "3.3"
+services:
+  test:
+    build:
+      context: ./
+      dockerfile: src/services/test/Dockerfile
+    networks:
+      - default
+    volumes:
+      - /dist/services/test:/dist/services/test
+      - log-test:/var/log
+
+  product:
+    build:
+      context: ./
+      dockerfile: src/services/product/Dockerfile
+    networks:
+      - default
+    volumes:
+      - /dist/services/product:/dist/services/product
+      - log-product:/var/log
+
+  user:
+    build:
+      context: ./
+      dockerfile: src/services/user/Dockerfile
+    networks:
+      - default
+    volumes:
+      - /dist/services/user:/dist/services/user
+      - log-user:/var/log
+
+  gateway:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - /dist/gateway:/dist/gateway
+      - log-gateway:/var/log
+    networks:
+      - default
+    links:
+      - test
+      - product
+      - user
+
+volumes:
+  log-test: {}
+  log-product: {}
+  log-user: {}
+  log-gateway: {}
