@@ -1,0 +1,15 @@
+# exclude folders
+node_modules
+src
+
+#exclude files
+npm-debug.log
+/.env
+/*.sh
+/tsconfig.json
+/yarn.lock
+/Dockerfile
+
+#excepsions
+
+!clearServer.sh

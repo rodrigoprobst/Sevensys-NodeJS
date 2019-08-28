@@ -1,0 +1,50 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "TEST-API",
+      "program": "${workspaceFolder}/dist/services/test/index.js",
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "PRODUCT-API",
+      "program": "${workspaceFolder}/dist/services/product/index.js",
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "USER-API",
+      "program": "${workspaceFolder}/dist/services/user/index.js",
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "STOCK-API",
+      "program": "${workspaceFolder}/dist/services/stock/index.js",
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "GATEWAY-API",
+      "program": "${workspaceFolder}/dist/gateway/index.js",
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    }
+  ]
+}
