@@ -74,4 +74,34 @@ export class StockController {
         .json({ message: "Ops... Ocorreu um erro!", error: e.message });
     }
   }
+
+  
+  public async processJob() {
+    try {
+      Stock.find({
+        status:"PENDING"
+      }).sort({
+        created_date: 1
+      }).limit(10).exec(async (err, stocks) => {
+        if (err) 
+          throw new Error(err);
+        
+        if (stocks.length > 0) {
+          // update para PROCESSED
+          const resUpdate = await Stock.updateMany({
+            _id: {$in : _.map(stocks, '_id')}
+          },{
+            $set: { status: "PROCESSED" }
+          });
+
+          return resUpdate;
+        }
+        
+      });
+    } catch (error) {
+      
+    }
+    console.log('oi');
+    return 'oi';
+  }
 }

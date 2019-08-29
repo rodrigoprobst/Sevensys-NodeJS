@@ -3,6 +3,7 @@ import {
   Column,
   Table,
   Scopes,
+  Default,
   CreatedAt,
   UpdatedAt,
   AllowNull,
@@ -20,12 +21,16 @@ export class Product extends Model<Product> {
   @AllowNull(false)
   @Length({ max: 100, min: 2 })
   @Column
-  title!: string;
+  title!: String;
 
   @AllowNull(false)
   @Length({ max: 1000, min: 2 })
   @Column
-  description!: string;
+  description!: String;
+
+  @Default (0)
+  @Column
+  stock!: Number;
 
   @AllowNull(false)
   @Column({ type: DataType.DECIMAL(10, 2) })

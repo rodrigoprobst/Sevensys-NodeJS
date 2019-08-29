@@ -1,1 +1,0 @@
-{"version":3,"file":"basicAuth.js","sourceRoot":"","sources":["../../src/middlewares/basicAuth.ts"],"names":[],"mappings":";;AAAA,SAAS,WAAW,CAAC,QAAQ,EAAE,QAAQ,EAAE,EAAE;IACzC,IAAI,QAAQ,KAAK,QAAQ,IAAI,QAAQ,KAAK,UAAU,EAAE;QACpD,OAAO,EAAE,CAAC,IAAI,EAAE,IAAI,CAAC,CAAC;KACvB;IAED,OAAO,EAAE,CAAC,IAAI,EAAE,KAAK,CAAC,CAAC;AACzB,CAAC;AAEQ,kCAAW"}
