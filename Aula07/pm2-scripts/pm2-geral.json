@@ -1,0 +1,59 @@
+{
+  "apps": [
+    {
+      "name": "GATEWAY-API",
+      "script": "dist/gateway/index.js",
+      "whatch": false,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "node_args": [],
+      "instances": "max",
+      "exec_mode": "cluster",
+      "out_file": "~/.pm2/logs/GATEWAY-API-out.log",
+      "error_file": "~/.pm2/logs/GATEWAY-API-error.log"
+    },
+    {
+      "name": "PRODUCT-API",
+      "script": "dist/services/product/index.js",
+      "whatch": false,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "node_args": [],
+      "instances": "max",
+      "exec_mode": "cluster",
+      "out_file": "~/.pm2/logs/PRODUCT-API-out.log",
+      "error_file": "~/.pm2/logs/PRODUCT-API-error.log"
+    },
+    {
+      "name": "STOCK-API",
+      "script": "dist/services/stock/index.js",
+      "whatch": false,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "node_args": [],
+      "instances": "max",
+      "exec_mode": "cluster",
+      "out_file": "~/.pm2/logs/STOCK-API-out.log",
+      "error_file": "~/.pm2/logs/STOCK-API-error.log"
+    },
+    {
+      "name": "TEST-API",
+      "script": "dist/services/test/index.js",
+      "whatch": false,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "node_args": [],
+      "instances": "max",
+      "exec_mode": "cluster",
+      "out_file": "~/.pm2/logs/TEST-API-out.log",
+      "error_file": "~/.pm2/logs/TEST-API-error.log"
+    },
+    {
+      "name": "USER-API",
+      "script": "dist/services/user/index.js",
+      "whatch": false,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "node_args": [],
+      "instances": "max",
+      "exec_mode": "cluster",
+      "out_file": "~/.pm2/logs/USER-API-out.log",
+      "error_file": "~/.pm2/logs/USER-API-error.log"
+    }
+  ]
+}
