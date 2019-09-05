@@ -1,0 +1,13 @@
+{
+  "apps": [
+    {
+      "name": "TEST-API",
+      "script": "dist/services/test/index.js",
+      "whatch": false,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "node_args": [],
+      "instances": "max",
+      "exec_mode": "cluster"
+    }
+  ]
+}
